@@ -1,0 +1,7 @@
+.project
+.settings/
+.idea/
+/vendor/
+composer.lock
+.DS_Store
+__MACOSX/
