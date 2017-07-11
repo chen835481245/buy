@@ -11,6 +11,10 @@
 |
 */
 
+
+Route::resource('ticker', 'TickerController');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
