@@ -1,7 +1,9 @@
 <?php
 namespace App\Model;
 
+use Curl\Curl;
 use Illuminate\Http\Request;
+
 /**
  * Created by PhpStorm.
  * User: ch
@@ -16,12 +18,11 @@ class OkCoinApi
      * @param string $symbol btc_cny,ltc_cny,eth_cny
      * @return mixed
      */
-    public function ticker($symbol = 'btc_cny')
+    public function ticker($symbol = 'btc_cny' ,$platform =1)
     {
-        $res = Request::create(self::URL_TICKER, 'GET', ['symbol' => $symbol]);
-        var_dump($res->getContent(false));
-
-        return json_decode($res);
+        $curl = new Curl();
+        $res = $curl->get(self::URL_TICKER, ['symbol' => $symbol]);
+        return $res;
     }
 
 }

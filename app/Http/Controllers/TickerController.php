@@ -35,9 +35,12 @@ class TickerController extends Controller
     public function create()
     {
         $res = $this->apiTicker->ticker('ltc_cny');
-        print_r($res);
-
-        $this->ticker->create();
+        $resArr = json_decode($res, true);
+        $data = $resArr['ticker'];
+        $data['date'] = $resArr['date'];
+        $data['symbol'] = 'ltc_cny';
+        $data['platform'] = 1;
+        echo $this->ticker->create($data);
     }
 
     /**
