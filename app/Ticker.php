@@ -12,7 +12,6 @@ class Ticker extends Model
         if (!isset($data['created_at'])) {
             $data['created_at'] = time();
         }
-        print_r($data);
         return DB::table('ticker')->insertGetId($data);
     }
 }
