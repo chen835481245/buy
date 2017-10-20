@@ -139,6 +139,7 @@ class OkCoinApi
      */
     public function trade($price, $amount, $symbol = 'ltc_cny', $type = 'buy')
     {
+        return ;
         $apiKey = config('config.api.api_key');
 
         $curl = new Curl();

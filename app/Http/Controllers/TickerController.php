@@ -23,25 +23,17 @@ class TickerController extends Controller
      */
     public function index()
     {
-        $res = $this->apiTicker->cancelOrder(432066669);
-        print_r($res);exit;
-
-        $trade = $this->apiTicker->trade(260,1);
-        print_r($trade);
-        $res = $this->apiTicker->orderInfo($trade['order_id']);
-        print_r($res);exit;
-
-        print_r($trade);exit;
-        $userInfo =$this->apiTicker->userInfo();
-        print_r($userInfo);
-        exit;
-        $data = $this->apiTicker->kline('ltc_cny','1hour',20);
-        print_r($data);exit;
-
-        $data = $this->apiTicker->depth('ltc_cny');
-        print_r($data);exit;
-        echo 'index';
-        //
+        set_time_limit(0);
+        while(true){
+            echo time();
+            $resArr = $this->apiTicker->ticker('ltc_cny');
+            $data = $resArr['ticker'];
+            $data['date'] = $resArr['date'];
+            $data['symbol'] = 'ltc_cny';
+            $data['platform'] = 1;
+            $this->ticker->create($data);
+            sleep(5);
+        }
     }
 
     /**
@@ -51,13 +43,7 @@ class TickerController extends Controller
      */
     public function create()
     {
-        $resArr = $this->apiTicker->ticker('ltc_cny');
-        $data = $resArr['ticker'];
-        $data['date'] = $resArr['date'];
-        $data['symbol'] = 'ltc_cny';
-        $data['platform'] = 1;
-        $this->ticker->create($data);
-        print_r($data);
+
     }
 
     /**
